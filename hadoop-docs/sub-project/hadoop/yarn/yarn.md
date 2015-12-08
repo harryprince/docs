@@ -6,11 +6,12 @@
 - Yet Another Resource Negotiator
 - 提供了一种 RM 的概念，AM 协调来自 RM 的任务和管理，NM 运行和执行任务，反馈给 AM。
 
-## 二、原理
+
+## 二、架构
 
 - [官方文档](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/)
 
-### 1、组成
+### 1、yarn 组成角色
 
 - [构架图](http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html)
 
@@ -45,14 +46,14 @@
  ```
 
 
-
-
 ### 2、MapReduce1 和 Yarn 对比
 
 ```
-1.老的框架中，JobTracker 一个很大的负担就是监控 job 下的 tasks 的运行状况，现在，这个部分就扔给 ApplicationMaster 做了，而 ResourceManager 中有一个模块叫做 ApplicationsMasters( 注意不是 ApplicationMaster)，它是监测 ApplicationMaster 的运行状况，如果出问题，会将其在其他机器上重启。
+1.老的框架中，JobTracker 一个很大的负担就是监控 job 下的 tasks 的运行状况，现在，这个部分就扔给 ApplicationMaster 做了．
+而 ResourceManager 中有一个模块叫做 ApplicationsMasters( 注意不是 ApplicationMaster)，它是监测 ApplicationMaster 的运行状况，如果出问题，会将其在其他机器上重启。
 
-2.Container 是 Yarn 为了将来作资源隔离而提出的一个框架。这一点应该借鉴了 Mesos 的工作，目前是一个框架，仅仅提供 java 虚拟机内存的隔离 ,hadoop 团队的设计思路应该后续能支持更多的资源调度和控制 , 既然资源表示成内存量，那就没有了之前的 map slot/reduce slot 分开造成集群资源闲置的尴尬情况。
+2.Container 是 Yarn 为了将来作资源隔离而提出的一个框架。
+这一点应该借鉴了 Mesos 的工作，目前是一个框架，仅仅提供 java 虚拟机内存的隔离 ,hadoop 团队的设计思路应该后续能支持更多的资源调度和控制 , 既然资源表示成内存量，那就没有了之前的 map slot/reduce slot 分开造成集群资源闲置的尴尬情况。
 ```
 
 ### 3、工作流程

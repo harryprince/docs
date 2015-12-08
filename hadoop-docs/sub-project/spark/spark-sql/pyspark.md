@@ -21,6 +21,14 @@ u'输出结果'
 print cursor.collect()
 
 ```
+- pyspark使用注意点:
+
+  * 如果python代码中使用第三方包，hadoop集群中所有work节点都需要安装
+  * Spark的DataFrame 转Pandas的DataFrame 可以使用 toPandas()方法
+  * 提交代码执行
+
+        spark-submit a.py --master yarn-client 
+
 
 ### 二、spark-sql 通过 JDBC 操作 hive 数据仓库
 
